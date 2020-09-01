@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getOneInstructor} from '../redux/actions/instructorActions'
 import {editLesson, deleteLesson} from '../redux/actions/lessonActions'
+import {getOneSchedule, editSchedule} from '../redux/actions/scheduleActions'
+
 import {Card, Button, CardColumns, Modal, Form} from 'react-bootstrap'
 
 
@@ -17,6 +19,8 @@ class LessonCard extends React.Component {
 
     componentDidMount(){
         this.props.getOneInstructor(this.props.lesson.instructor_id)
+        this.props.getOneSchedule(this.props.lesson.schedule_id)
+
     }
 
     editClickHandler = () =>{
@@ -35,6 +39,8 @@ class LessonCard extends React.Component {
     deleteClickHandler = (e) => {
         e.preventDefault()
         this.props.deleteLesson(this.props.lesson.id)
+        this.props.editSchedule(this.props.schedule.id, this.props.schedule.instructor_id, this.props.schedule.date, true)
+        //id, instructor id, date, schedule
     }
 
     render() {
@@ -128,7 +134,10 @@ class LessonCard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {instructor: state.instructors}
+    return {
+        instructor: state.instructors,
+        schedule: state.schedules 
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -136,7 +145,8 @@ const mapDispatchToProps = (dispatch) => {
         getOneInstructor: (id) => dispatch(getOneInstructor(id)),
         editLesson: (id, user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill) => dispatch(editLesson(id, user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill)),
         deleteLesson: (id) => dispatch(deleteLesson(id)),
-
+        getOneSchedule: (id) => dispatch(getOneSchedule(id)),
+        editSchedule: (id, instructor_id, date, available) => dispatch(editSchedule(id, instructor_id, date, available)),
     }
 }
 

@@ -1,6 +1,6 @@
-import {EDIT_SCHEDULE} from './types'
+import {EDIT_SCHEDULE, GET_ONE_SCHEDULE} from './types'
 
-export const editSchedule = (id, instructor_id, date, available) => {
+const editSchedule = (id, instructor_id, date, available) => {
     return function(dispatch){
         return fetch(`http://localhost:3000/schedules/${id}`, {
             method: 'PATCH', 
@@ -19,3 +19,13 @@ export const editSchedule = (id, instructor_id, date, available) => {
         .then(data => dispatch({type: EDIT_SCHEDULE, payload: data}))
     }
 }
+
+const getOneSchedule = (id) => {
+    return function(dispatch){
+        return fetch(`http://localhost:3000/schedules/${id}`) 
+            .then(resp => resp.json())
+            .then(data => dispatch({type: GET_ONE_SCHEDULE, payload: data}))
+    }
+}
+
+export {editSchedule, getOneSchedule}

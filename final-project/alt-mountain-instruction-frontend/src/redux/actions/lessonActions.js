@@ -3,7 +3,6 @@ import {
     EDIT_LESSON,
     DELETE_LESSON
 } from './types'; 
-import resortReducer from '../reducers/resortReducer';
 
 export const addLesson = (user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill) => {
     return function(dispatch){
