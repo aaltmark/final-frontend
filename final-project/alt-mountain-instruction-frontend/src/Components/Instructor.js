@@ -51,7 +51,6 @@ class Instructor extends React.Component {
         if (this.props.instructor.length !== 0) {
             // let selectedLesson = this.props.instructor.schedules.map(lessons => lessons).filter(lesson => lesson.date === this.state.selectedDate)
             // let selectedLesson = this.props.instructor.tests.map(tests => tests).filter(lesson => lesson.test_date === this.state.selectedDate)
-            console.log(this.props.instructor)
             let selectedLesson = this.props.instructor.tests.find(test => test.test_date === this.state.selectedDate)
             this.setState({ selectedLesson: [...this.state.selectedLesson, selectedLesson] })
         }
@@ -59,7 +58,6 @@ class Instructor extends React.Component {
 
     render(){
         // console.log(this.instructorLessons())
-        console.log(this.state.selectedLesson)
         return(
             <>
             {this.props.instructor.length !== 0 ? 

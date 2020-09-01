@@ -512,6 +512,23 @@ button.createbtn i {
   
 }
 
+.available {
+  background-color: green;
+  color: white;
+}
+
+
+.unavailable {
+  background-color: red;
+  color: white;
+}
+
+.lesson-container{
+  display: flex; 
+}
+
+
+
 
 
 

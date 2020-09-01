@@ -10,6 +10,9 @@ import {
     searchLessonQuantityReducer, searchLessonDatesReducer
 } from './searchReducer'
 
+import userReducer from './userReducer'
+
+
 
 
 const rootReducer = combineReducers({
@@ -28,7 +31,12 @@ const rootReducer = combineReducers({
     searchGroupSkill: searchGroupSkillReducer,
 
     searchLessonQuantity: searchLessonQuantityReducer,
-    searchLessonDates: searchLessonDatesReducer
+    searchLessonDates: searchLessonDatesReducer,
+
+    users: userReducer
+
+
+
 })
 
 export default rootReducer;
