@@ -45,7 +45,6 @@ class LessonCard extends React.Component {
     }
 
     render() {
-        console.log(this.props.lesson)
         return (
             <div class="lesson-container">
                 <Card style={{ width: '18rem' }} >

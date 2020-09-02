@@ -35,6 +35,7 @@ export const GET_ONE_SCHEDULE = "GET_ONE_SCHEDULE";
 export const ADD_NEW_LESSON = "ADD_NEW_LESSON";
 export const EDIT_LESSON = "EDIT_LESSON"; 
 export const DELETE_LESSON = "DELETE_LESSON"; 
+export const FETCH_LESSONS = "FETCH_LESSONS"; 
 
 //auth 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
