@@ -1,4 +1,4 @@
-import {ADD_NEW_LESSON} from '../actions/types';
+import {ADD_NEW_LESSON, EDIT_LESSON, DELETE_LESSON} from '../actions/types';
 
 const initialState = []
 

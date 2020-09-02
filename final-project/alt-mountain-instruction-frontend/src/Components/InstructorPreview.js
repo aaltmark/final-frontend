@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react'
+import {NavLink} from 'react-bootstrap'
 
 
 class InstructorPreview extends React.Component {
@@ -14,6 +15,7 @@ class InstructorPreview extends React.Component {
 
     render(){
         let instructor = this.props.instructor
+        console.log(this.props.instructor)
         return(
             <>
                 <div class="flex">
@@ -25,16 +27,17 @@ class InstructorPreview extends React.Component {
                         <h3>{instructor.name}</h3>
                         <h6>{instructor.specialty}</h6>
                         <p>
-                            Date of Birth: {instructor.date_of_birth}<br />
+                            Date of Birth: {instructor.dob}<br />
                             Years Experience: {instructor.years_experience}
                         </p>
                         <div class = "buttons">
-                            <button class="primary">
+                            {/* <button class="primary">
                                 View Profile
-                            </button>
-                            <button class="primary ghost">
+                            </button> */}
+                            <NavLink href={`/instructors/${instructor.id}`}>View Profile</NavLink>
+                            {/* <button class="primary ghost">
                                 Message
-                            </button>
+                            </button> */}
                         </div>
                         <div class="skills">
                             <h6>Resorts</h6>

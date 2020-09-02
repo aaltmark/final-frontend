@@ -25,7 +25,7 @@ class SearchContainer extends React.Component {
         console.log(this.props)
         return(
             <>
-                <div class="sidebar">
+                {/* <div class="sidebar">
                     <Link to={`${this.props.match.url}/resort`}>Resort</Link>
                     <Link to={`${this.props.match.url}/specialty`}>Specialty</Link>
                     <Link to={`${this.props.match.url}/group`}>Group</Link>
@@ -34,7 +34,7 @@ class SearchContainer extends React.Component {
 
 
 
-                </div>
+                </div> */}
                 <div class="search-component">
                     <Switch>
                         <Route path={`${this.props.match.url}/resort`} render={routerProps => <SearchResort {...routerProps} searchIncrementer={this.searchIncrementer} filterPreviews={this.filterPreviews}/>} />
