@@ -1,7 +1,8 @@
 import {
     GET_INSTRUCTORS,
     GET_ONE_INSTRUCTOR, 
-    SEARCH_INSTRUCTORS
+    SEARCH_INSTRUCTORS, 
+    FILTER_INSTRUCTORS
 } from './types'; 
 
 export const getInstructors = () => {
@@ -27,4 +28,7 @@ export const searchInstructors = (id) => {
         .then(data => dispatch({type: SEARCH_INSTRUCTORS, payload: data}))
     }
 }
+
+export const filterInstructors = (instructors) => ({ type: FILTER_INSTRUCTORS, payload: instructors})
+
 

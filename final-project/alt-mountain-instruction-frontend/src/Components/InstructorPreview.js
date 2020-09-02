@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react'
 
 
 class InstructorPreview extends React.Component {
@@ -12,7 +13,6 @@ class InstructorPreview extends React.Component {
    }
 
     render(){
-        console.log(this.props.instructor.resorts.map(resort => resort.resort_name))
         let instructor = this.props.instructor
         return(
             <>

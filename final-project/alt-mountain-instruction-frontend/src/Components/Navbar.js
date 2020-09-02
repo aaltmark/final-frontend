@@ -21,6 +21,8 @@ class NavBar extends React.Component {
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/lessons">Lessons</Nav.Link>
                 <Nav.Link href="/messages">Messages</Nav.Link>
+                <Nav.Link href="/search/resort">Search</Nav.Link>
+
                 {/* <Nav.Link href="/" onClick={this.logout.bind(this)}>Logout</Nav.Link> */}
 
             </>

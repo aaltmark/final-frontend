@@ -9,9 +9,9 @@ import { getInstructors} from '../redux/actions/instructorActions'
 
 class InstructorContainer extends React.Component {
 
-    componentDidMount(){
-        // this.props.fetchInstructors()
-    }
+    // componentDidMount(){
+    //     this.props.fetchInstructors()
+    // }
 
     
     render(){
@@ -20,14 +20,14 @@ class InstructorContainer extends React.Component {
                 <Switch>
                     <Route path={`${this.props.match.url}/:instructorId`} render={routerProps => <Instructor key="instructor_id" {...routerProps}/> }/>
                     {/* <Route path={`${this.props.match.url}`} render={routerProps => <InstructorPreview {...routerProps}/>} /> */}
-                    <Route exact path={`${this.props.match.url}`} render={()=> {
+                    {/* <Route exact path={`${this.props.match.url}`} render={()=> {
                         if (this.props.instructors.length > 0) {
                             return this.props.instructors.map(instructor => <InstructorPreview key={instructor.id} instructor={instructor}/>)
 
                         } else {
                             return null 
                         }
-                    }}/>
+                    }}/> */}
 
 
                 </Switch>

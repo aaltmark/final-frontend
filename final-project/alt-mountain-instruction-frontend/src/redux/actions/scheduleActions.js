@@ -16,6 +16,7 @@ const editSchedule = (id, instructor_id, date, available) => {
             })
         })
         .then(resp => resp.json())
+        // .then(data => console.log("edit sched", data))
         .then(data => dispatch({type: EDIT_SCHEDULE, payload: data}))
     }
 }

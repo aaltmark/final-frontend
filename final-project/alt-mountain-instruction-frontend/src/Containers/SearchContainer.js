@@ -5,6 +5,8 @@ import SearchSpecialty from '../Components/SearchSpecialty'
 import SearchGroup from '../Components/SearchGroup'
 import SearchDates from '../Components/SearchDates'
 import SearchSubmit from '../Components/SearchSubmit'
+import InstructorPreview from '../Components/InstructorPreview'
+import {connect} from 'react-redux'
 
 class SearchContainer extends React.Component {
 
@@ -15,7 +17,12 @@ class SearchContainer extends React.Component {
     searchIncrementer = (int) => {
         this.setState({searchCounter: this.state.searchCounter + int})
     }
+
+    filterPreviews = (instructors) => {
+        instructors.map(instructor => <InstructorPreview key={instructor.id} instructor={instructor} />)
+    }
     render(){
+        console.log(this.props)
         return(
             <>
                 <div class="sidebar">
@@ -30,7 +37,14 @@ class SearchContainer extends React.Component {
                 </div>
                 <div class="search-component">
                     <Switch>
-                        <Route path={`${this.props.match.url}/resort`} render={routerProps => <SearchResort {...routerProps} searchIncrementer={this.searchIncrementer}/>} />
+                        <Route path={`${this.props.match.url}/resort`} render={routerProps => <SearchResort {...routerProps} searchIncrementer={this.searchIncrementer} filterPreviews={this.filterPreviews}/>} />
+                        {/* <Route path={`${this.props.match.url}/instructors`} render={routerProps => <InstructorPreview {...routerProps} searchIncrementer={this.searchIncrementer} />} /> */}
+                        <Route path={`${this.props.match.url}/instructors`} render={()=> {
+                            if (this.props.instructors.length < 40){
+                                return this.props.instructors.map(instructor => <InstructorPreview key={instructor.id} instructor={instructor} />)
+                            } 
+                        }} />
+
                         <Route path={`${this.props.match.url}/specialty`} render={routerProps => <SearchSpecialty {...routerProps} />} />
                         <Route path={`${this.props.match.url}/group`} render={routerProps => <SearchGroup {...routerProps} />} />
                         <Route path={`${this.props.match.url}/dates`} render={routerProps => <SearchDates {...routerProps} />} />
@@ -46,7 +60,11 @@ class SearchContainer extends React.Component {
     }
 }
 
-export default SearchContainer; 
+const mapStateToProps = (state) => {
+    return {instructors: state.instructors}
+}
+
+export default connect(mapStateToProps)(SearchContainer); 
 
 //localStorage.getItem('specialty') === instructor.specialty || global state specialt y== instructor.specialty 
 //localStorage.getItem('group_size) <= instructor.max_group_size 
