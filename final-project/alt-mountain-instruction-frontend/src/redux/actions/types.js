@@ -30,6 +30,8 @@ export const SAVE_LESSON_DATES = "SAVE_LESSON_DATES";
 //schedule
 export const EDIT_SCHEDULE = "EDIT_SCHEDULE";
 export const GET_ONE_SCHEDULE = "GET_ONE_SCHEDULE"; 
+export const FETCH_SCHEDULE = "FETCH_SCHEDULE"; 
+export const MAKE_SCHEDULE_AVAILABLE = "MAKE_SCHEDULE_AVAILABLE";
 
 //lesson
 export const ADD_NEW_LESSON = "ADD_NEW_LESSON";

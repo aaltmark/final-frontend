@@ -13,9 +13,6 @@ class LessonBooker extends React.Component {
         groupSkill: null 
     }
 
-    // componentDidMount(){
-    //     getOneSchedule(this.state.instructorSchedule.schedule_id)
-    // }
 
     modalShower = () => {
         this.setState({showMode: !this.state.showMode})

@@ -1,4 +1,4 @@
-import {GET_INSTRUCTORS, GET_ONE_INSTRUCTOR, SEARCH_INSTRUCTORS, FILTER_INSTRUCTORS} from '../actions/types';
+import {GET_INSTRUCTORS, GET_ONE_INSTRUCTOR, FILTER_INSTRUCTORS} from '../actions/types';
 
 const initialState = []
 
@@ -9,9 +9,6 @@ export default function instructorReducer(state = initialState, action){
             return action.payload
         case GET_ONE_INSTRUCTOR:
             return action.payload.instructor
-        case SEARCH_INSTRUCTORS:
-            // return action.payload
-            let instructors = action.payload.map(instructor => instructor)
         case FILTER_INSTRUCTORS:
             return action.payload
         default:

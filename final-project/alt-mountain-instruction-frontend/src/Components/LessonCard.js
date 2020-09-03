@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getOneInstructor} from '../redux/actions/instructorActions'
 import {editLesson, deleteLesson} from '../redux/actions/lessonActions'
-import {getOneSchedule, editSchedule} from '../redux/actions/scheduleActions'
+import {getOneSchedule, makeScheduleAvailable} from '../redux/actions/scheduleActions'
 
 import {Card, Button, CardColumns, Modal, Form} from 'react-bootstrap'
 
@@ -40,11 +40,12 @@ class LessonCard extends React.Component {
     deleteClickHandler = (e) => {
         e.preventDefault()
         this.props.deleteLesson(this.props.lesson.id)
-        this.props.editSchedule(this.props.schedule.id, this.props.schedule.instructor_id, this.props.schedule.date, true)
+        this.props.makeScheduleAvailable(this.props.schedule.id, this.props.schedule.instructor_id, this.props.schedule.date, true)
         //id, instructor id, date, schedule
     }
 
     render() {
+        console.log(this.props)
         return (
             <div class="lesson-container">
                 <Card style={{ width: '18rem' }} >
@@ -146,7 +147,7 @@ const mapDispatchToProps = (dispatch) => {
         editLesson: (id, user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill) => dispatch(editLesson(id, user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill)),
         deleteLesson: (id) => dispatch(deleteLesson(id)),
         getOneSchedule: (id) => dispatch(getOneSchedule(id)),
-        editSchedule: (id, instructor_id, date, available) => dispatch(editSchedule(id, instructor_id, date, available)),
+        makeScheduleAvailable: (id, instructor_id, date, available) => dispatch(makeScheduleAvailable(id, instructor_id, date, available)),
     }
 }
 

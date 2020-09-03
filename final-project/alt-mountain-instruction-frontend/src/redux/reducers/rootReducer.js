@@ -1,6 +1,4 @@
 import { combineReducers } from 'redux'
-import errorReducer from './errorReducer'
-import authReducer from './authReducer'
 import resortReducer from './resortReducer';
 import instructorReducer from './instructorReducer'
 import {

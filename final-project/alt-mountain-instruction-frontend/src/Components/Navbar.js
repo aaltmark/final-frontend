@@ -1,5 +1,4 @@
 import React from 'react'
-import {NavLink, Link} from 'react-router-dom'
 import {Navbar, Nav, Container} from 'react-bootstrap'
 import { connect } from 'react-redux'
 // import { logout } from '../redux/actions/authActions'
@@ -27,13 +26,13 @@ class NavBar extends React.Component {
 
             </>
         ); 
-        const guestLinks = (
-            <>
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/signup">Sign Up</Nav.Link>
-                <Nav.Link href="/login">Login</Nav.Link>
-            </>
-        );
+        // const guestLinks = (
+        //     <>
+        //         <Nav.Link href="/">Home</Nav.Link>
+        //         <Nav.Link href="/signup">Sign Up</Nav.Link>
+        //         <Nav.Link href="/login">Login</Nav.Link>
+        //     </>
+        // );
         return(
             <Container>
                 <Navbar bg="dark" variant="dark" fixed="top">

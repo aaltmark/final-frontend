@@ -1,8 +1,8 @@
 import DatePicker from 'react-datepicker'
-import React, { useState } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {Button, Modal, Form} from 'react-bootstrap'
-import { editSchedule, getOneSchedule } from '../redux/actions/scheduleActions'
+import { editSchedule, getOneSchedule, fetchSchedules } from '../redux/actions/scheduleActions'
 import {addLesson} from '../redux/actions/lessonActions'
 
 class DateSelector extends React.Component {
@@ -19,6 +19,10 @@ class DateSelector extends React.Component {
         groupSkill: null 
     }
 
+    componentDidMount(){
+        this.props.fetchSchedules()
+    }
+
     //takes in date from DatePicker and converts it to match backend
     handleChange = date => {
         this.setState({startDate: date})
@@ -30,7 +34,7 @@ class DateSelector extends React.Component {
     findAvailability = (newDate) => {
         let instructorSchedule = this.props.instructor.schedules.find(schedule => schedule.schedule_date === newDate)
         this.setState({ instructorSchedule: instructorSchedule })
-        this.fetchSchedule()
+        // this.fetchSchedule()
     }
 
     //sets global state of schedule so we can asynch update to unavail when booked
@@ -68,7 +72,7 @@ class DateSelector extends React.Component {
     }
 
     render(){
-        console.log(this.state.showMode)
+        console.log(this.props)
         return (
             <div>
                 <DatePicker selected={this.state.startDate} onChange={this.handleChange} dateFormat='yyyy/MM/dd' minDate={new Date()} isClearable/>
@@ -164,7 +168,10 @@ class DateSelector extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {instructor: state.instructors}
+    return {
+        instructor: state.instructors,
+        schedules: state.schedules
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -172,6 +179,7 @@ const mapDispatchToProps = (dispatch) => {
         editSchedule: (id, instructor_id, date, available) => dispatch(editSchedule(id, instructor_id, date, available)),
         addLesson: (user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill) => dispatch(addLesson(user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill)),
         getOneSchedule: (id) => dispatch(getOneSchedule(id)),
+        fetchSchedules: () => dispatch(fetchSchedules())
     }
 }
 

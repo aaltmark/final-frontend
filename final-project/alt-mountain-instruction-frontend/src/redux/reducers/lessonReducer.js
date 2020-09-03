@@ -6,6 +6,8 @@ const initialState = []
 export default function lessonReducer(state = initialState, action){
     switch(action.type){
         case ADD_NEW_LESSON:
+            console.log("lesson state", state)
+            console.log("lesson payload", action.payload)
             return [...state, action.payload]
         case EDIT_LESSON:
             return state.map((lesson) => {

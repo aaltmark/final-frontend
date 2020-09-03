@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { saveGroupSize, saveGroupAge, saveGroupSkill } from '../redux/actions/searchActions'
-import {Form, Button} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
 
 
 class SearchGroup extends React.Component {
