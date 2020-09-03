@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Button, Modal, Form} from 'react-bootstrap'
-import { editSchedule } from '../redux/actions/scheduleActions'
+import { editSchedule, getOneSchedule } from '../redux/actions/scheduleActions'
 import {addLesson} from '../redux/actions/lessonActions'
 
 class LessonBooker extends React.Component {
@@ -12,6 +12,10 @@ class LessonBooker extends React.Component {
         groupSize: null,
         groupSkill: null 
     }
+
+    // componentDidMount(){
+    //     getOneSchedule(this.state.instructorSchedule.schedule_id)
+    // }
 
     modalShower = () => {
         this.setState({showMode: !this.state.showMode})
@@ -39,6 +43,7 @@ class LessonBooker extends React.Component {
     }
 
     render(){
+        console.log(this.props)
         return(
             <div>
                 <Modal show={!this.state.showMode} onHide={this.modalShower}>
@@ -103,4 +108,12 @@ class LessonBooker extends React.Component {
     }
 }
 
-export default LessonBooker; 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // getOneSchedule: (id) => dispatch(getOneSchedule(id)),
+        addLesson: (user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill) => dispatch(addLesson(user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill)),
+        editSchedule: (id, instructor_id, date, available) => dispatch(editSchedule(id, instructor_id, date, available))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LessonBooker); 

@@ -10,14 +10,6 @@ import {connect} from 'react-redux'
 
 class SearchContainer extends React.Component {
 
-    state = {
-        searchCounter: 0
-    }
-
-    searchIncrementer = (int) => {
-        this.setState({searchCounter: this.state.searchCounter + int})
-    }
-
     filterPreviews = (instructors) => {
         instructors.map(instructor => <InstructorPreview key={instructor.id} instructor={instructor} />)
     }
@@ -37,8 +29,7 @@ class SearchContainer extends React.Component {
                 </div> */}
                 <div class="search-component">
                     <Switch>
-                        <Route path={`${this.props.match.url}/resort`} render={routerProps => <SearchResort {...routerProps} searchIncrementer={this.searchIncrementer} filterPreviews={this.filterPreviews}/>} />
-                        {/* <Route path={`${this.props.match.url}/instructors`} render={routerProps => <InstructorPreview {...routerProps} searchIncrementer={this.searchIncrementer} />} /> */}
+                        <Route path={`${this.props.match.url}/resort`} render={routerProps => <SearchResort {...routerProps} filterPreviews={this.filterPreviews}/>} />
                         <Route path={`${this.props.match.url}/instructors`} render={()=> {
                             if (this.props.instructors.length < 40){
                                 return this.props.instructors.map(instructor => <InstructorPreview key={instructor.id} instructor={instructor} />)

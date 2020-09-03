@@ -18,7 +18,7 @@ class InstructorPreview extends React.Component {
         console.log(this.props.instructor)
         return(
             <>
-                <div class="flex">
+                {/* <div class="flex"> */}
                     <div class="card-container">
                         {/* <span class="pro">{instructor.certification === true ? <img src="https://upload.wikimedia.org/wikipedia/en/f/f8/PSIA-AASI_Logos.jpg"/> : null }</span> */}
                         <span class="pro">{instructor.certification === true ? "Certified" : null }</span>
@@ -46,7 +46,7 @@ class InstructorPreview extends React.Component {
                             </ul>
                         </div>
                     </div>
-                </div>
+                {/* </div> */}
             </>
         )
     }

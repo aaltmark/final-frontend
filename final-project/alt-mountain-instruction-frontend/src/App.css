@@ -62,10 +62,20 @@
   color: #f1f1f1;
 }
 
+/* for serach preview  */
+
 .search-component {
-  margin-left: 160px;
+  margin-left: 60px;
+  margin-top: 80px;
   padding: 0px 10px;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
 }
+/* for every other instructor preview  */
+/* .search-component > div:nth-child(odd){
+  border: red;
+  border-style: solid;
+} */
 
 /* specialty */
 .specialty-container {
@@ -144,13 +154,12 @@ p {
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
   color: #b3b8cd;
   position: relative;
-  width: 30%;
-  max-width: 100%;
+  width: 90%;
   text-align: center;
-  margin: auto;
-  height: 350px;
-  left: 40px;
-  top: 100px;
+  height: 50%;
+  top: 0%;
+  left: 0%;
+  
 }
 
 .card-container .pro {
@@ -194,7 +203,6 @@ button.primary.ghost {
   background-color: #1f1a36;
   text-align: left;
   padding: 15px;
-  margin-top: 30px;
 }
 
 .skills ul {
@@ -527,6 +535,11 @@ button.createbtn i {
   color: white;
 }
 
+.booked {
+  background-color: rgb(253,190,25);
+  color: white; 
+}
+
 .lesson-container{
   display: flex; 
 }
@@ -551,8 +564,8 @@ button.createbtn i {
 }
 
 .search-component {
-  width: 80%;
-  height: 60%;
+  width: 90%;
+  height: 70%;
 }
 
 div.flex {

@@ -25,8 +25,6 @@ class SearchResort extends React.Component {
 
     optionsCreator = () => {
         if (this.props.resorts.length > 0) {
-
-            // return this.props.resorts
             let resorts = this.props.resorts
             const transformed = resorts.map(({id, name}) => ({ label: name, value: id} ))
             return transformed 
@@ -34,7 +32,6 @@ class SearchResort extends React.Component {
     }
 
     handleChange = (e) => {
-        // this.setState({selectedValue: e.value})
         this.props.selectResortId(e.value)
         localStorage.setItem('resort_id', `${e.value}`)
 
@@ -44,30 +41,24 @@ class SearchResort extends React.Component {
     }
 
     filterInstructors = () => {
-        let filteredList = this.props.instructors.filter(instructor => instructor.resorts.map(resort => resort.resort_name).toString() === this.props.selectedResortName)
-        // filteredList.map(instructor => <InstructorPreview key={instructor.id} instructor={instructor} /> )
-        // console.log(filteredList)
+        let filteredList = this.props.instructors.filter(instructor => instructor.resorts.map(resort => resort.resort_name).toString().includes(this.props.selectedResortName))
         this.props.filterInstructors(filteredList)
-
     }
 
 
     render(){
-        const options = (this.optionsCreator())
-        // console.log(this.props)
-        // console.log(this.state.selectedValue)
-        // console.log("global state", this.props.selectedResortId)
-        // console.log("local state", this.state.selectedValue)
+        const options = (this.optionsCreator())      
         return(
             <>
             {this.props.resorts.length > 0 ? 
                 <>
+                <div>
                     <h1>Select a Resort:</h1>
                     <Select options={options} onChange={this.handleChange} class="resort-search"/>
                     <br/>
                     {/* <button onClick={this.filterInstructors} class="search-btn">Search for Instructors</button> */}
                     <Link to={`/search/instructors`} class="search-btn" onClick={this.filterInstructors}>Search For Instructors</Link>
-                    
+                </div>
 
                 </>
             :

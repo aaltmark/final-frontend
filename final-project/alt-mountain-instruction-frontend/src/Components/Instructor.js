@@ -57,7 +57,6 @@ class Instructor extends React.Component {
     }
 
     render(){
-        // console.log(this.instructorLessons())
         return(
             <>
             {this.props.instructor.length !== 0 ? 

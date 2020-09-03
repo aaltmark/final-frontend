@@ -2,7 +2,7 @@ import DatePicker from 'react-datepicker'
 import React, { useState } from 'react'
 import {connect} from 'react-redux'
 import {Button, Modal, Form} from 'react-bootstrap'
-import { editSchedule } from '../redux/actions/scheduleActions'
+import { editSchedule, getOneSchedule } from '../redux/actions/scheduleActions'
 import {addLesson} from '../redux/actions/lessonActions'
 
 class DateSelector extends React.Component {
@@ -19,7 +19,6 @@ class DateSelector extends React.Component {
         groupSkill: null 
     }
 
-    
     //takes in date from DatePicker and converts it to match backend
     handleChange = date => {
         this.setState({startDate: date})
@@ -31,19 +30,30 @@ class DateSelector extends React.Component {
     findAvailability = (newDate) => {
         let instructorSchedule = this.props.instructor.schedules.find(schedule => schedule.schedule_date === newDate)
         this.setState({ instructorSchedule: instructorSchedule })
+        this.fetchSchedule()
     }
 
+    //sets global state of schedule so we can asynch update to unavail when booked
+    fetchSchedule = () => {
+        //getting an error where it's null on first seleection 
+        // console.log(this.state.instructorSchedule)
+        // getOneSchedule(this.state.instructorSchedule.schedule_id)
+    }
+
+    //hides and shows modal to book lesson
     modalShower = () => {
         this.setState({showMode: !this.state.showMode})
     }
 
+    //saves selections of modal form in state
     formSelector = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
 
+    //patch instructor sched to show unavail, post new lesson to db, change UI to reflect
     submitHandler = (e) => {
         e.preventDefault()
-        //line below patches instructor lesson 
+        //line below patches instructor sched 
         this.props.editSchedule(this.state.instructorSchedule.schedule_id, this.props.instructor.id, this.state.instructorSchedule.schedule_date, false)
 
         //post lesson
@@ -58,8 +68,7 @@ class DateSelector extends React.Component {
     }
 
     render(){
-        // console.log(this.state.resort, this.state.groupAge, this.state.groupSize, this.state.groupSkill)
-        // console.log(this.state.instructorSchedule)
+        console.log(this.state.showMode)
         return (
             <div>
                 <DatePicker selected={this.state.startDate} onChange={this.handleChange} dateFormat='yyyy/MM/dd' minDate={new Date()} isClearable/>
@@ -67,13 +76,11 @@ class DateSelector extends React.Component {
                     <>
                         {this.state.instructorSchedule.schedule_available ?
                             <>
-                                <button className="available" onClick={this.modalShower}>Available - Book</button>
-                                {/* {this.state.showMode ? <LessonBooker /> : null } */}
-                                <Modal show={!this.state.showMode} onHide={this.modalShower}>
+                                <Modal show={this.state.showMode} onHide={this.modalShower}>
                                     <Modal.Header closeButton>
                                         <Modal.Title>Book a Lesson</Modal.Title>
                                     </Modal.Header>
-                                    <Form onSubmit={this.submitHandler}>{/* need to make submit handler to patch and post*/}
+                                    <Form onSubmit={this.submitHandler}>
                                         <Form.Group>
                                             <Form.Label>Date</Form.Label>
                                             <Form.Text>{this.state.instructorSchedule.schedule_date}</Form.Text>
@@ -81,12 +88,12 @@ class DateSelector extends React.Component {
                                         <Form.Group>
                                             <Form.Label>Resort</Form.Label>
                                             {this.props.instructor.resorts.map((resort) => (
-                                                <div key='inline-radio' className="mb-3">
+                                                <div key={resort.resort_id} className="mb-3">
                                                     <Form.Check inline label={resort.resort_name} type='radio' id={resort.resort_id} name='resort' value={resort.resort_name} onClick={this.formSelector}/>
                                                 </div>
                                             ))}
                                         </Form.Group>
-                                        <Form.Group controlId="exampleForm.SelectCustom">
+                                        <Form.Group>
                                             <Form.Label>Group Size</Form.Label>
                                             <Form.Control as="select" custom onChange={this.formSelector} name='groupSize'>
                                                 <option>Groups of 1-6</option>
@@ -98,7 +105,7 @@ class DateSelector extends React.Component {
                                                 <option>6</option>
                                             </Form.Control>
                                         </Form.Group>
-                                        <Form.Group controlId="exampleForm.SelectCustom">
+                                        <Form.Group>
                                             <Form.Label>Group Age</Form.Label>
                                             <Form.Control as="select" custom onChange={this.formSelector} name='groupAge'>
                                                 <option>Choose an age</option>
@@ -107,7 +114,7 @@ class DateSelector extends React.Component {
                                                 <option>Adult (20+)</option>
                                             </Form.Control>
                                         </Form.Group>
-                                        <Form.Group controlId="exampleForm.SelectCustom">
+                                        <Form.Group>
                                             <Form.Label>Group Skill Level</Form.Label>
                                             <Form.Control as="select" custom onChange={this.formSelector} name='groupSkill'>
                                                 <option>Choose a level</option>
@@ -126,7 +133,15 @@ class DateSelector extends React.Component {
                                         </Modal.Footer>
                                     </Form> 
                                 </Modal>
-                                    {this.state.booked ? <p>You've booked this lesson!</p> : null}
+                                {this.state.booked ?
+                                    <>
+                                    <button className="booked">Booked</button>
+                                    <p><b>You've booked this lesson</b></p>
+                                    </>
+                                :
+                                    <button className="available" onClick={this.modalShower}>Available - Book</button>
+                                }
+
                             </>
                         :
                             <p class="unavailable">Unavailable</p>
@@ -136,7 +151,7 @@ class DateSelector extends React.Component {
                     
                 :
                 <>
-                    <p class="unavailable">Nothing available today</p>
+                    {null}
                 </>
 
 
@@ -155,7 +170,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return { 
         editSchedule: (id, instructor_id, date, available) => dispatch(editSchedule(id, instructor_id, date, available)),
-        addLesson: (user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill) => dispatch(addLesson(user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill))
+        addLesson: (user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill) => dispatch(addLesson(user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill)),
+        getOneSchedule: (id) => dispatch(getOneSchedule(id)),
     }
 }
 

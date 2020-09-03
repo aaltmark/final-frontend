@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { saveLessonQuantity, saveLessonDates } from '../redux/actions/searchActions'
+import {getOneSchedule} from '../redux/actions/scheduleActions'
 import {Form, Button} from 'react-bootstrap'
 import Calendar from 'react-calendar';
 
@@ -21,7 +22,7 @@ class SearchDates extends React.Component {
 
 
     render(){
-        console.log(this.props.selectedLessonDates)
+        console.log(this.props)
         return(
             <>
             
