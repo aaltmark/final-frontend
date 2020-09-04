@@ -1,13 +1,22 @@
-import {GET_ONE_USER} from '../actions/types';
+import {GET_ONE_USER, SIGNUP_USER, LOGIN_USER} from '../actions/types';
 
-const initialState = null 
+const initialState = null
+
 
 export default function userReducer (state = initialState, action) {
     switch (action.type){
         case GET_ONE_USER:
             return action.payload
+        case SIGNUP_USER: 
+            console.log("signup", action.payload)
+            return action.payload 
+        case LOGIN_USER:
+            console.log("login", action.payload)
+            console.log("login state", state)
+            return action.payload
         default:
             return state
     }
 }
+
 

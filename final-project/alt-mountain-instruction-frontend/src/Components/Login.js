@@ -1,5 +1,7 @@
 import React from 'react'
 import {Form, Button} from 'react-bootstrap'
+import {connect} from 'react-redux'
+import {loginUser} from '../redux/actions/userActions'
 
 class Login extends React.Component {
     state = {
@@ -13,17 +15,18 @@ class Login extends React.Component {
 
     submitHandler = (e) => {
         e.preventDefault()
-        //where ill need to handle token 
+        this.props.loginUser(this.state)
     }
 
     render() {
+        console.log(this.props)
         return (
             <div class="sign-up">
                 <h1>Login</h1>
                     <Form onSubmit={this.submitHandler}>
                         <Form.Group>
                             <Form.Label>Email*</Form.Label>
-                            <Form.Control onChange={this.changeHandler} value={this.state.username} placeholder='Enter your username...' name='username' type="text" />
+                            <Form.Control onChange={this.changeHandler} value={this.state.email} placeholder='Enter your email...' name='email' type="text" />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Password*</Form.Label>
@@ -34,7 +37,17 @@ class Login extends React.Component {
             </div>
         )
     }
-    
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        user: state.users,
+        error: state.errors
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {loginUser: (userObj) => dispatch(loginUser(userObj))}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

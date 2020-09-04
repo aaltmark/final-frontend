@@ -43,8 +43,18 @@ export const FETCH_LESSONS = "FETCH_LESSONS";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL"; 
 
-//user 
+//user - auth 
 export const GET_ONE_USER = "GET_ONE_USER"; 
+
+export const SIGNUP_USER = "SIGNUP_USER"; 
+export const SIGNUP_ERROR = "SIGNUP_ERROR"; 
+
+export const LOAD_USER = "LOAD_USER"; 
+
+export const LOGIN_USER = "LOGIN_USER"; 
+export const LOGIN_ERROR = "LOGIN_ERROR"; 
+
+export const LOGOUT_USER = "LOGOUT_USER"; 
 
 
 

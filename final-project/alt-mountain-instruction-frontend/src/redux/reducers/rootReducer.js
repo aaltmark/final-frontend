@@ -9,6 +9,7 @@ import {
 } from './searchReducer'
 
 import userReducer from './userReducer'
+import errorReducer from './errorReducer'
 import scheduleReducer from './scheduleReducer';
 import lessonReducer from './lessonReducer'
 
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
     searchLessonDates: searchLessonDatesReducer,
 
     users: userReducer,
+    errors: errorReducer,
 
     schedules: scheduleReducer,
     lessons: lessonReducer

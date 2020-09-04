@@ -5,7 +5,7 @@ import { saveResortId, saveResortName } from '../redux/actions/searchActions'
 import {Link} from 'react-router-dom'
 
 import Select from 'react-select'
-// import {Button, Form} from 'react-bootstrap'
+import {Button, Form} from 'react-bootstrap'
 import { getInstructors, filterInstructors } from '../redux/actions/instructorActions'
 import InstructorPreview from './InstructorPreview'
 
@@ -42,16 +42,15 @@ class SearchResort extends React.Component {
     }
 
     handleSpecialtyChange = (e) => {
-        this.setState({selectSpecialty: e.target.value})
+        this.setState({selectedSpecialty: e.target.value})
     }
 
     filterInstructors = () => {
-        let filteredList = this.props.instructors.filter(instructor => instructor.resorts.map(resort => resort.resort_name).includes(this.props.selectedResortName))
-        this.props.filterInstructors(filteredList)
-        // let filteredSpecialty = this.props.instructors.filter(instructor => instructor.specialty === this.state.selectedSpecialty)
-        // let officialFilteredList = filteredSpecialty.filter(instructor => instructor.resorts.map(resort => resort.resort_name).toString().includes(this.props.selectedResortName))
-        // console.log(filteredSpecialty)
-
+        // let filteredList = this.props.instructors.filter(instructor => instructor.resorts.map(resort => resort.resort_name).includes(this.props.selectedResortName))
+        // this.props.filterInstructors(filteredList)
+        let filteredSpecialty = this.props.instructors.filter(instructor => instructor.specialty === this.state.selectedSpecialty)
+        let officialFilteredList = filteredSpecialty.filter(instructor => instructor.resorts.map(resort => resort.resort_name).toString().includes(this.props.selectedResortName))
+        this.props.filterInstructors(officialFilteredList)
     }
 
 
@@ -68,7 +67,7 @@ class SearchResort extends React.Component {
                     {/* <button onClick={this.filterInstructors} class="search-btn">Search for Instructors</button> */}
                     <Link to={`/search/instructors`} class="search-btn" onClick={this.filterInstructors}>Search For Instructors</Link>
                 </div>
-                {/* <div>
+                <div>
                     <h1>Ski or Snowboard</h1>
                     <Form>
                         <Form.Group>
@@ -79,7 +78,7 @@ class SearchResort extends React.Component {
                             </Form.Control>
                         </Form.Group>
                     </Form>
-                </div> */}
+                </div>
 
                 </>
             :

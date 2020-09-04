@@ -9,7 +9,7 @@ import ResortContainer from './Containers/ResortContainer'
 import SearchContainer from './Containers/SearchContainer'
 import LessonContainer from './Containers/LessonContainer'
 import Signup from './Components/Signup'
-import Login from './Components/Login'
+import AccountContainer from './Containers/AccountContainer'
 
 
 
@@ -25,7 +25,7 @@ class App extends React.Component {
             <Route path="/users" render={routerProps => <UserContainer {...routerProps} /> } />
             <Route path="/lessons" render={routerProps => <LessonContainer {...routerProps} /> } />
             <Route path="/signup" render={routerProps => <Signup {...routerProps} /> } />
-            <Route path="/login" render={routerProps => <Login {...routerProps} /> } />
+            <Route path="/login" render={routerProps => <AccountContainer {...routerProps}/> } />
 
             <Route path="/" render={() => <Home />} />
           </Switch>

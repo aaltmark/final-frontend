@@ -1,26 +1,17 @@
-import {GET_ERRORS, CLEAR_ERRORS} from '../actions/types';
+import {SIGNUP_ERROR, LOGIN_ERROR} from '../actions/types';
 
-const initialState = {
-    msg: {},
-    status: null, 
-    id: null
-}
+const initialState = null
 
-export default function errorReducer(state = initialState, action){
+export default function errorReducer (state = initialState, action){
     switch(action.type){
-        case GET_ERRORS:
-            return {
-                msg: action.payload.msg,
-                status: action.payload.status,
-                id: action.payload.id //if we want to target specific error for something
-            }
-        case CLEAR_ERRORS: //reset
-            return{
-                msg: {},
-                status: null,
-                id: null
-            }
-        default: 
-            return state    
+        case SIGNUP_ERROR: 
+            console.log("signup error", action.payload)
+            return action.payload 
+        case LOGIN_ERROR:
+            console.log("login error", action.payload)
+            console.log("login error state", state)
+            return action.payload
+        default:
+            return state
     }
 }
