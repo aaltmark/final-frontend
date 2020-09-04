@@ -76,23 +76,16 @@ class Instructor extends React.Component {
                                     <h3 class="user-name">{this.props.instructor.name}</h3>
                                     <div class="address">
                                         <p class="state">From: {this.props.instructor.hometown}</p>
-                                        {/* <span class="country">USA</span> */}
                                     </div>
                                 </div>
                                 <div class="profile-option">
-                                    {/* <div class="notification">
-                                        <i class="fa fa-bell"></i>
-                                        <span class="alert-message">1</span>
-                                    </div> */}
                                 </div>
                             </div>
                             <div class="main-bd">
                                 <div class="left-side">
                                     <div class="profile-side">
-                                        {/* <p class="mobile-no"><i class="fa fa-phone"></i>don't think i want to show mobile</p> */}
-                                        {/* <div class="user-mail"><i class="fa fa-envelope"></i>don't think i want to show email</div> */}
                                         <div class="user-bio">
-                                            <h3>Bio</h3>
+                                            <h3>{this.props.instructor.specialty} Instructor</h3>
                                             <p class="bio">{this.props.instructor.bio}</p>
                                         </div>
                                         <div class="profile-btn">
@@ -127,7 +120,9 @@ class Instructor extends React.Component {
                                     {this.state.filter === "experience" ? 
                                     <>
                                         <div class="profile-posts-tab">
-                                            <h1>Experience</h1>
+                                            {this.props.instructor.experiences.map(experience => 
+                                                <h4>{experience.experience_category} - {experience.experience_name} - {experience.experience_year}</h4>
+                                            )}
                                             <p>put experiences and certification in here</p>
                                         </div>
                                     </>
