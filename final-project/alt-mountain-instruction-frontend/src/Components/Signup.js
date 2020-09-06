@@ -50,7 +50,7 @@ class Signup extends React.Component {
                             </Form.Group>
                             <Button type="submit">Create User</Button> {this.props.error ? <p className="error-message">{this.props.error}</p> : null}
                         </Form>
-                        {this.props.error ? <p class="error">{this.props.error}</p> : null}
+                        {/* {this.props.error ? <p class="error">{this.props.error}</p> : null} */}
                     </div>
                 </>
                 }

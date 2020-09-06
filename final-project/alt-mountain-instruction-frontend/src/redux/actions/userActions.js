@@ -64,5 +64,21 @@ export const loginUser = (userObj) => {
     }
 }
 
+export const logoutUser = () => ({ type: LOGOUT_USER, payload: null })
+
+export const loadUser = () => {
+    return function(dispatch){
+        const token = localStorage.getItem("token")
+        if (token) {
+            fetch("http://localhost:3000/profile", {
+                method: "GET", 
+                headers: {Authorization: `Bearer ${token}`},
+            })
+            .then(resp => resp.json())
+            .then(data => dispatch({type: LOAD_USER, payload: data.user}))
+        }
+    }
+}
+
 
 

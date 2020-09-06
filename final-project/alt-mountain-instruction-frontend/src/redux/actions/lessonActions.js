@@ -5,6 +5,8 @@
     FETCH_LESSONS
 } from './types'; 
 
+const token = localStorage.getItem('token')
+
 
 
 export const addLesson = (user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill) => {
@@ -13,7 +15,8 @@ export const addLesson = (user_id, instructor_id, schedule_id, date, resort_name
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
-                'accepts': 'application/json'
+                'accepts': 'application/json',
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 user_id: user_id, 
@@ -38,7 +41,8 @@ export const editLesson = (id, user_id, instructor_id, schedule_id, date, resort
             method: 'PATCH', 
             headers: {
                 'Content-Type': 'application/json',
-                'accepts': 'application/json'
+                'accepts': 'application/json', 
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 user_id: user_id, 
@@ -59,7 +63,8 @@ export const editLesson = (id, user_id, instructor_id, schedule_id, date, resort
 export const deleteLesson = (id) => {
     return function(dispatch){
         return fetch(`http://localhost:3000/lessons/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {Authorization: `Bearer ${token}`}
         })
         .then(resp => resp.json())
         .then(data => dispatch({type: DELETE_LESSON, payload: data}))

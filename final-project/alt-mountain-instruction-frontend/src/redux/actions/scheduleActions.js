@@ -1,12 +1,15 @@
 import {EDIT_SCHEDULE, GET_ONE_SCHEDULE, FETCH_SCHEDULE, MAKE_SCHEDULE_AVAILABLE} from './types'
 
+const token = localStorage.getItem('token')
+
 const editSchedule = (id, instructor_id, date, available) => {
     return function(dispatch){
         return fetch(`http://localhost:3000/schedules/${id}`, {
             method: 'PATCH', 
             headers: {
                 'Content-Type': 'application/json', 
-                'accepts': 'application/json'
+                'accepts': 'application/json',
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({ 
                 id: id, 
@@ -43,7 +46,8 @@ const makeScheduleAvailable = (id, instructor_id, date, available) => {
             method: 'PATCH', 
             headers: {
                 'Content-Type': 'application/json', 
-                'accepts': 'application/json'
+                'accepts': 'application/json',
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({ 
                 id: id, 

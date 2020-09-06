@@ -8,6 +8,8 @@ import Select from 'react-select'
 import {Button, Form} from 'react-bootstrap'
 import { getInstructors, filterInstructors } from '../redux/actions/instructorActions'
 import InstructorPreview from './InstructorPreview'
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 
 
@@ -82,7 +84,11 @@ class SearchResort extends React.Component {
 
                 </>
             :
-                null
+                <div class="loading">
+                    <ClipLoader color="aqua" />
+                    <img src="https://static.dribbble.com/users/1086141/screenshots/9713060/wolf_mountain-01_4x.png" alt="mountains" />
+                </div>
+
             }
             </>
             

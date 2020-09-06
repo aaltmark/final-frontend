@@ -1,44 +1,46 @@
 import React from 'react'
 import {Navbar, Nav, Container} from 'react-bootstrap'
 import { connect } from 'react-redux'
-// import { logout } from '../redux/actions/authActions'
+import { logoutUser, loadUser } from '../redux/actions/userActions'
 
 class NavBar extends React.Component {
 
-    //not logged i need: home, view all instructors, login/register
-    //logged in i need: home, view all instructors, my profile
+    componentDidMount(){
+        this.props.loadUser();
+    }
 
     logOut (e) {
-        e.preventDefault();
-        // this.props.logout();
+        localStorage.removeItem("token")
+        this.props.logoutUser();
     }
 
     render(){
-        // const { isAuthenticated } = this.props.auth 
         const userLinks = (
             <>
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/lessons">Lessons</Nav.Link>
-                <Nav.Link href="/messages">Messages</Nav.Link>
+                {/* <Nav.Link href="/messages">Messages</Nav.Link> */}
                 <Nav.Link href="/search/resort">Search</Nav.Link>
-
-                {/* <Nav.Link href="/" onClick={this.logout.bind(this)}>Logout</Nav.Link> */}
-
+                <Nav.Item><Nav.Link href="/" onClick={this.logOut} >Log Out</Nav.Link></Nav.Item>
             </>
         ); 
-        // const guestLinks = (
-        //     <>
-        //         <Nav.Link href="/">Home</Nav.Link>
-        //         <Nav.Link href="/signup">Sign Up</Nav.Link>
-        //         <Nav.Link href="/login">Login</Nav.Link>
-        //     </>
-        // );
+        const guestLinks = (
+            <>
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link href="/search/resort">Search</Nav.Link>
+            </>
+        );
         return(
             <Container>
                 <Navbar bg="dark" variant="dark" fixed="top">
                     <Navbar.Brand href="/">Alt Instruction</Navbar.Brand>
                     <Nav className="mr-auto">
-                        {userLinks}
+                        {this.props.user ? 
+                            userLinks
+                            :
+                            guestLinks
+                        }
                     </Nav>
                 </Navbar>
             </Container>
@@ -46,15 +48,19 @@ class NavBar extends React.Component {
     }
 }
 
-// NavBar.propTypes = {
-//     auth: React.PropTypes.object.isRequired,
-//     logout: React.PropTypes.func.isRequired
-// }
 
 const mapStateToProps = (state) => {
     return{
-        auth: state.auth
+        user: state.users
     }
 }
 
-export default connect(mapStateToProps)(NavBar);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logoutUser: () => dispatch(logoutUser()),
+        loadUser: () => dispatch(loadUser())
+    }
+    
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

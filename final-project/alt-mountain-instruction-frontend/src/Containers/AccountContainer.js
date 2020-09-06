@@ -11,7 +11,6 @@ const AccountContainer = (props) => {
                 <>
                     <Login />
                     <NavLink to="/signup"><p id="no-account">Don't have an account? Sign up here</p></NavLink>
-                    {/* <Signup submitHandler={props.signupHandler} /> */}
                     {props.error ? <p class="error">{props.error}</p> : null}
                     
                 </>

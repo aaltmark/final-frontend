@@ -16,11 +16,16 @@ class Login extends React.Component {
     submitHandler = (e) => {
         e.preventDefault()
         this.props.loginUser(this.state)
+        this.setState({
+            email: '',
+            password: ''
+        })
     }
 
     render() {
         console.log(this.props)
         return (
+            
             <div class="sign-up">
                 <h1>Login</h1>
                     <Form onSubmit={this.submitHandler}>
@@ -32,7 +37,8 @@ class Login extends React.Component {
                             <Form.Label>Password*</Form.Label>
                             <Form.Control onChange={this.changeHandler} value={this.state.password} placeholder='Enter your password...' name='password' type='password' />
                         </Form.Group>
-                        <Button type="submit" value='Login'>Login</Button> {this.props.error ? <p class="error-message">{this.props.error}</p> : null}
+                        <Button type="submit" value='Login'>Login</Button> 
+                        {/* {this.props.error ? <p class="error-message">{this.props.error}</p> : null} */}
                     </Form>
             </div>
         )

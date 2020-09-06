@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getOneUser} from '../redux/actions/userActions'
+import {loadUser} from '../redux/actions/userActions'
 import {fetchLessons} from '../redux/actions/lessonActions'
 
 import LessonCard from '../Components/LessonCard'
@@ -8,7 +8,7 @@ import LessonCard from '../Components/LessonCard'
 class LessonContainer extends React.Component {
 
     componentDidMount(){
-        this.props.getOneUser();
+        this.props.loadUser();
         this.props.fetchLessons();
     }
  
@@ -17,10 +17,17 @@ class LessonContainer extends React.Component {
         return(
             <>
                 {/* {this.props.users ?  */}
-                {this.props.lessons.length > 0 ?
+                {this.props.user ?
                     <>
+                    {this.props.user.lessons.length > 0 ? 
+                        <>
                         {/* {this.props.users.lessons.map(lesson => <LessonCard key={lesson.id} lesson={lesson} user={this.props.users}/>)} */}
-                        {this.props.lessons.map(lesson => <LessonCard key={lesson.id} lesson={lesson} user={this.props.users}/>)}
+                            {this.props.user.lessons.map(lesson => <LessonCard key={lesson.id} lesson={lesson} user={this.props.user}/>)}
+                        </>
+                        :
+                        <p>No lessons booked.</p>
+                    }
+
                     </>
                  :
                     <p>No lessons booked.</p>
@@ -32,14 +39,14 @@ class LessonContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users,
+        user: state.users,
         lessons: state.lessons 
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return { 
-        getOneUser: () => dispatch(getOneUser()),
+        loadUser: () => dispatch(loadUser()),
         fetchLessons: () => dispatch(fetchLessons())
     }
 }
