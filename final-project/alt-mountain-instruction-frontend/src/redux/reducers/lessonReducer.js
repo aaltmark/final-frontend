@@ -10,7 +10,9 @@ export default function lessonReducer(state = initialState, action){
             console.log("lesson payload", action.payload)
             return [...state, action.payload]
         case EDIT_LESSON:
-            return state.map((lesson) => {
+            console.log("lesson state", state)
+            console.log("lesson payload", action.payload)
+            return [...state].map((lesson) => {
                 if (lesson.id !== action.payload.id) {
                     return lesson
                 } else {

@@ -33,7 +33,7 @@ class LessonCard extends React.Component {
 
     editSubmitHandler = (e) => {
         e.preventDefault()
-        this.props.editLesson(this.props.lesson.id, this.props.user.id, this.props.lesson.id, this.props.lesson.instructor_id, this.props.lesson.date, this.state.resort, parseInt(this.state.groupSize, 10), this.state.groupAge, this.state.groupSkill)
+        this.props.editLesson(this.props.lesson.id, this.props.user.id, this.props.lesson.instructor_id, this.props.lesson.schedule_id, this.props.lesson.date, this.state.resort, parseInt(this.state.groupSize, 10), this.state.groupAge, this.state.groupSkill)
         this.setState({showMode: !this.state.showMode})
     }
 

@@ -17,21 +17,17 @@ class LessonContainer extends React.Component {
         return(
             <>
                 {/* {this.props.users ?  */}
-                {this.props.user ?
+                {this.props.user && this.props.user.lessons.length > 0 ?
                     <>
-                    {this.props.user.lessons.length > 0 ? 
-                        <>
+                        {this.props.lessons.filter(lesson => lesson.user_id === this.props.user.id).map(filteredLesson => <LessonCard key={filteredLesson.id} lesson={filteredLesson} user={this.props.user}/>)}
+                       
                         {/* {this.props.users.lessons.map(lesson => <LessonCard key={lesson.id} lesson={lesson} user={this.props.users}/>)} */}
-                            {this.props.user.lessons.map(lesson => <LessonCard key={lesson.id} lesson={lesson} user={this.props.user}/>)}
-                        </>
-                        :
+                        {/* {this.props.user.lessons.map(lesson => <LessonCard key={lesson.id} lesson={lesson} user={this.props.user}/>)} */}
+                    </>
+                    :
                         <p>No lessons booked.</p>
                     }
 
-                    </>
-                 :
-                    <p>No lessons booked.</p>
-                } 
             </>
         )
     }
