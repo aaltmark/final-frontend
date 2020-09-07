@@ -57,10 +57,11 @@ class SearchResort extends React.Component {
 
 
     render(){
-        const options = (this.optionsCreator())   
+        const options = (this.optionsCreator())  
+        console.log(this.props.instructors) 
         return(
             <>
-            {this.props.resorts.length > 0 ? 
+            {this.props.resorts.length > 0 && this.props.instructors.length > 0 ? 
                 <>
                 <div>
                     <h1>Select a Resort:</h1>

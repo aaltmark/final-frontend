@@ -16,37 +16,38 @@ class InstructorPreview extends React.Component {
         let instructor = this.props.instructor
         console.log(this.props.instructor)
         return(
-            <>
-                {/* <div class="flex"> */}
-                    <div class="card-container">
-                        {/* <span class="pro">{instructor.certification === true ? <img src="https://upload.wikimedia.org/wikipedia/en/f/f8/PSIA-AASI_Logos.jpg"/> : null }</span> */}
-                        <span class="pro">{instructor.certification === true ? "Certified" : null }</span>
+            // <>
+            // {this.props.instructor ? 
+                <>
+                        <div class="card-container">
+                            <span class="pro">{instructor.certification === true ? "Certified" : null }</span>
 
-                        <img class="round" src={instructor.image} alt="user" />
-                        <h3>{instructor.name}</h3>
-                        <h6>{instructor.specialty}</h6>
-                        <p>
-                            Date of Birth: {instructor.dob}<br />
-                            Years Experience: {instructor.years_experience}
-                        </p>
-                        <div class = "buttons">
-                            {/* <button class="primary">
-                                View Profile
-                            </button> */}
-                            <NavLink href={`/instructors/${instructor.id}`}>View Profile</NavLink>
-                            {/* <button class="primary ghost">
-                                Message
-                            </button> */}
+                            <img class="round" src={instructor.image} alt="user" />
+                            <h3>{instructor.name}</h3>
+                            <h6>{instructor.specialty}</h6>
+                            <p>
+                                Date of Birth: {instructor.dob}<br />
+                                Years Experience: {instructor.years_experience}
+                            </p>
+                            <div class = "buttons">
+                                <NavLink href={`/instructors/${instructor.id}`}>View Profile</NavLink>
+                            </div>
+                            <div class="skills">
+                                <h6>Resorts</h6>
+                                <ul>
+                                    {instructor.resorts.map(resort => <li>{resort.resort_name}</li>)}
+                                </ul>
+                            </div>
                         </div>
-                        <div class="skills">
-                            <h6>Resorts</h6>
-                            <ul>
-                                {instructor.resorts.map(resort => <li>{resort.resort_name}</li>)}
-                            </ul>
-                        </div>
-                    </div>
-                {/* </div> */}
-            </>
+                </>
+            //     :
+            //     <>
+            //         <p>There are no instructors that fit this search.</p>
+            //         <NavLink href={`/search/resort`}>New Search</NavLink>
+            //     </>
+            //     }
+            // </>
+
         )
     }
 }

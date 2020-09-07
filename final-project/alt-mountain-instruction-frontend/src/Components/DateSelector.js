@@ -4,6 +4,9 @@ import {connect} from 'react-redux'
 import {Button, Modal, Form} from 'react-bootstrap'
 import { editSchedule, getOneSchedule, fetchSchedules } from '../redux/actions/scheduleActions'
 import {addLesson} from '../redux/actions/lessonActions'
+import { loadUser } from '../redux/actions/userActions'
+import Login from './Login'
+
 
 class DateSelector extends React.Component {
     state = {
@@ -20,7 +23,9 @@ class DateSelector extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchSchedules()
+        this.props.fetchSchedules();
+        this.props.loadUser();
+
     }
 
     //takes in date from DatePicker and converts it to match backend
@@ -46,7 +51,11 @@ class DateSelector extends React.Component {
 
     //hides and shows modal to book lesson
     modalShower = () => {
-        this.setState({showMode: !this.state.showMode})
+        if (this.props.user){
+            this.setState({showMode: !this.state.showMode})
+        } else {
+            window.alert("You must login to book a lesson.")
+        }
     }
 
     //saves selections of modal form in state
@@ -170,7 +179,8 @@ class DateSelector extends React.Component {
 const mapStateToProps = (state) => {
     return {
         instructor: state.instructors,
-        schedules: state.schedules
+        schedules: state.schedules,
+        user: state.users
     }
 }
 
@@ -179,7 +189,8 @@ const mapDispatchToProps = (dispatch) => {
         editSchedule: (id, instructor_id, date, available) => dispatch(editSchedule(id, instructor_id, date, available)),
         addLesson: (user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill) => dispatch(addLesson(user_id, instructor_id, schedule_id, date, resort_name, group_size, group_age, group_skill)),
         getOneSchedule: (id) => dispatch(getOneSchedule(id)),
-        fetchSchedules: () => dispatch(fetchSchedules())
+        fetchSchedules: () => dispatch(fetchSchedules()),
+        loadUser: () => dispatch(loadUser())
     }
 }
 

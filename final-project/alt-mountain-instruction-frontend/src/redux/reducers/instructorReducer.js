@@ -10,6 +10,8 @@ export default function instructorReducer(state = initialState, action){
         case GET_ONE_INSTRUCTOR:
             return action.payload.instructor
         case FILTER_INSTRUCTORS:
+            console.log("payload", action.payload)
+            console.log("state", state)
             return action.payload
         default:
             return state

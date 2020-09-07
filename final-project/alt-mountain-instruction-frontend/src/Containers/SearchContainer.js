@@ -7,6 +7,7 @@ import SearchDates from '../Components/SearchDates'
 import SearchSubmit from '../Components/SearchSubmit'
 import InstructorPreview from '../Components/InstructorPreview'
 import {connect} from 'react-redux'
+import {NavLink} from 'react-bootstrap'
 
 class SearchContainer extends React.Component {
 
@@ -14,7 +15,6 @@ class SearchContainer extends React.Component {
         instructors.map(instructor => <InstructorPreview key={instructor.id} instructor={instructor} />)
     }
     render(){
-        console.log(this.props)
         return(
             <>
                 {/* <div class="sidebar">
@@ -31,7 +31,19 @@ class SearchContainer extends React.Component {
                     <Switch>
                         <Route path={`${this.props.match.url}/resort`} render={routerProps => <SearchResort {...routerProps} filterPreviews={this.filterPreviews}/>} />
                         <Route path={`${this.props.match.url}/instructors`} render={()=> {
-                            if (this.props.instructors.length < 40){
+                            if (this.props.instructors.length === 0){
+                                return (
+                                    <>
+                                    <div>
+
+                                    </div>
+                                    <div class="empty-search">
+                                        <p>Apologies, there are no instructors that fit this search.</p>
+                                        <NavLink href={`/search/resort`} class="nav-button">New Search</NavLink>
+                                    </div>
+                                    </>
+                                )
+                            } else {
                                 return this.props.instructors.map(instructor => <InstructorPreview key={instructor.id} instructor={instructor} />)
                             } 
                         }} />
