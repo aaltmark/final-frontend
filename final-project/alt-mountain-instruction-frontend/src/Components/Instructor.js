@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { getOneInstructor } from '../redux/actions/instructorActions'
 import DateSelector from './DateSelector'
 import ReviewCard from './ReviewCard'
+import {ListGroup} from 'react-bootstrap'
 
 
 class Instructor extends React.Component {
@@ -121,10 +122,25 @@ class Instructor extends React.Component {
                                     {this.state.filter === "experience" ? 
                                     <>
                                         <div class="profile-posts-tab">
-                                            {this.props.instructor.experiences.map(experience => 
+                                            <h3>Certifications</h3>
+                                            <ListGroup variant="flush">
+                                                {this.props.instructor.experiences.filter(experience => experience.experience_category === "Certification").map(experience =>
+                                                    <ListGroup.Item>{experience.experience_name} - {experience.experience_year} </ListGroup.Item>
+                                                )}
+                                            </ListGroup>
+
+                                            <h3>Work</h3>
+                                            <ListGroup variant="flush">
+                                                {this.props.instructor.experiences.filter(experience => experience.experience_category === "Work").map(experience =>
+                                                        <ListGroup.Item>{experience.experience_name} - {experience.experience_year} </ListGroup.Item>
+                                                )}
+                                            </ListGroup>
+
+                                           
+                                            {/* {this.props.instructor.experiences.map(experience => 
                                                 <h4>{experience.experience_category} - {experience.experience_name} - {experience.experience_year}</h4>
                                             )}
-                                            <p>put experiences and certification in here</p>
+                                            <p>put experiences and certification in here</p> */}
                                         </div>
                                     </>
                                     : 
