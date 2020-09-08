@@ -58,12 +58,12 @@ class LessonCard extends React.Component {
         return (
             <div class="lesson-container">
                 <Card style={{ width: '18rem' }} >
-                    <Card.Img variant="top" src={this.props.instructor.image} />
+                    <Card.Img variant="top" src={this.props.lesson.instructor.image} />
                     <Card.Body>
                         <Card.Title>
-                            Lesson with: <NavLink to={`/instructors/${this.props.instructor.id}`}>{this.props.instructor.name}</NavLink> <br/> 
+                            Lesson with: <NavLink to={`/instructors/${this.props.lesson.instructor.id}`}>{this.props.lesson.instructor.name}</NavLink> <br/> 
                             {this.props.lesson.date} <br/>
-                            {this.props.user.reviews.map(review => review.instructor_id).includes(this.props.instructor.id) ?
+                            {this.props.user.reviews.map(review => review.instructor_id).includes(this.props.lesson.instructor_id) ?
                                 <Button variant="secondary" onClick={this.showAddReview} block disabled>Previously Reviewed</Button>
                             :
                                 <Button variant="warning" onClick={this.showAddReview} block>Review this Instructor</Button>
@@ -82,7 +82,7 @@ class LessonCard extends React.Component {
 
                     </Card.Body>
                 </Card>
-                <AddReviewForm show={this.state.showAddReview} close={this.closeAddReview} instructor={this.props.instructor} user={this.props.user}/>
+                <AddReviewForm show={this.state.showAddReview} close={this.closeAddReview} instructor={this.props.lesson.instructor} user={this.props.user}/>
                 {this.state.showMode ? 
                     <>
                         <Modal show={this.state.showMode} onHide={this.modalShower}>
@@ -96,7 +96,7 @@ class LessonCard extends React.Component {
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>Resort</Form.Label>
-                                    {this.props.instructor.resorts.map((resort) => (
+                                    {this.props.lesson.instructor.resorts.map((resort) => (
                                         <div key='inline-radio' className="mb-3">
                                             <Form.Check inline label={resort.resort_name} type='radio' id={resort.resort_id} name='resort' value={resort.resort_name} onClick={this.formSelector}/>
                                         </div>

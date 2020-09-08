@@ -613,6 +613,14 @@ input[type="checkbox"]{
   cursor: pointer;
 }
 
+.yellow{
+  color: yellow;
+}
+
+.checked {
+  color: orange;
+}
+
 
 
 

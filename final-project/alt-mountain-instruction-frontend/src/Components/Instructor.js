@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { getOneInstructor } from '../redux/actions/instructorActions'
 import DateSelector from './DateSelector'
+import ReviewCard from './ReviewCard'
 
 
 class Instructor extends React.Component {
@@ -93,7 +94,7 @@ class Instructor extends React.Component {
                                                 <i class="fa fa-comment"></i>Message
                                             </button>
                                         </div>
-                                        <div class="user-rating">
+                                        {/* <div class="user-rating">
                                             <h3 class="rating">4.5</h3>
                                             <div class="rate">
                                                 <div class="stars">
@@ -105,7 +106,7 @@ class Instructor extends React.Component {
                                                 <span class="no-user">
                                                 <span>123 reviews</span>&nbsp;&nbsp; </span>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>   
                             </div>
                             <div class="right-side">
@@ -149,8 +150,14 @@ class Instructor extends React.Component {
                                     {this.state.filter === "reviews" ? 
                                     <>
                                         <div class="profile-setting-tab">
-                                            <h1>Reviews</h1>
-                                            <p>maybe get to this</p>
+                                            {this.props.instructor.reviews.length > 0 ? 
+                                            <>
+                                                {this.props.instructor.reviews.map(review => <ReviewCard review={review} />)}
+                                            </>
+                                            :
+                                            <p>This instructor has no reviews.</p>
+                                            }
+                                            
                                         </div>
                                     </>
                                     : 
