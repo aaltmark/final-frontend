@@ -597,6 +597,22 @@ div.flex {
   color: red;
 }
 
+.white {
+  color: white; 
+}
+
+.l-container{
+  display: flex; 
+}
+
+input[type="checkbox"]{
+  display: none; 
+}
+
+.star{
+  cursor: pointer;
+}
+
 
 
 

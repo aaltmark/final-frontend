@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import {getOneInstructor} from '../redux/actions/instructorActions'
 import {editLesson, deleteLesson} from '../redux/actions/lessonActions'
 import {getOneSchedule, makeScheduleAvailable} from '../redux/actions/scheduleActions'
-
+import {NavLink} from 'react-router-dom'
 import {Card, Button, CardColumns, Modal, Form} from 'react-bootstrap'
+import AddReviewForm from './AddReviewForm'
 
 
 class LessonCard extends React.Component {
@@ -14,13 +15,13 @@ class LessonCard extends React.Component {
         resort: null,
         groupAge: null,
         groupSize: null,
-        groupSkill: null 
+        groupSkill: null ,
+        showAddReview: false
     }
 
     componentDidMount(){
         this.props.getOneInstructor(this.props.lesson.instructor_id)
         this.props.getOneSchedule(this.props.lesson.schedule_id)
-
     }
 
     editClickHandler = () =>{
@@ -44,14 +45,32 @@ class LessonCard extends React.Component {
         //id, instructor id, date, schedule
     }
 
+    showAddReview = () => {
+        this.setState({showAddReview: true})
+    }
+
+    closeAddReview = () => {
+        this.setState({showAddReview: false})
+    }
+
     render() {
-        console.log(this.props)
+        console.log(this.props.instructor)
         return (
             <div class="lesson-container">
                 <Card style={{ width: '18rem' }} >
                     <Card.Img variant="top" src={this.props.instructor.image} />
                     <Card.Body>
-                        <Card.Title>Lesson with: {this.props.instructor.name} on {this.props.lesson.date}</Card.Title>
+                        <Card.Title>
+                            Lesson with: <NavLink to={`/instructors/${this.props.instructor.id}`}>{this.props.instructor.name}</NavLink> <br/> 
+                            {this.props.lesson.date} <br/>
+                            {this.props.user.reviews.map(review => review.instructor_id).includes(this.props.instructor.id) ?
+                                <Button variant="secondary" onClick={this.showAddReview} block disabled>Previously Reviewed</Button>
+                            :
+                                <Button variant="warning" onClick={this.showAddReview} block>Review this Instructor</Button>
+
+                            }
+                            {/* <Button variant="warning" onClick={this.showAddReview} block>Review this Instructor</Button> */}
+                        </Card.Title>
                         <Card.Text>
                             <b>Resort:</b> {this.props.lesson.resort_name}<br/>
                             <b>Group Size:</b> {this.props.lesson.group_size}<br/>
@@ -59,10 +78,11 @@ class LessonCard extends React.Component {
                             <b>Group Skill:</b> {this.props.lesson.group_skill}
                         </Card.Text>
                         <Button type="button" class="edit-lesson-btn" variant="primary" onClick={this.editClickHandler}>Edit Lesson</Button>
-                        <Button type="button" variant="primary" onClick={this.deleteClickHandler}>Delete Lesson</Button>
+                        <Button type="button" variant="danger" onClick={this.deleteClickHandler}>Delete Lesson</Button>
 
                     </Card.Body>
                 </Card>
+                <AddReviewForm show={this.state.showAddReview} close={this.closeAddReview} instructor={this.props.instructor} user={this.props.user}/>
                 {this.state.showMode ? 
                     <>
                         <Modal show={this.state.showMode} onHide={this.modalShower}>

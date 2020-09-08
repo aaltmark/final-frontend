@@ -13,16 +13,17 @@ class LessonContainer extends React.Component {
     }
  
     render(){
-        console.log(this.props)
+        console.log(this.props.lessons.filter(lesson => lesson.user_id === this.props.user.id))
         return(
             <>
                 {/* {this.props.users ?  */}
                 {this.props.user && this.props.user.lessons.length > 0 ?
                     <>
+                    <div class="l-container">
                         {this.props.lessons.filter(lesson => lesson.user_id === this.props.user.id).map(filteredLesson => <LessonCard key={filteredLesson.id} lesson={filteredLesson} user={this.props.user}/>)}
-                       
-                        {/* {this.props.users.lessons.map(lesson => <LessonCard key={lesson.id} lesson={lesson} user={this.props.users}/>)} */}
                         {/* {this.props.user.lessons.map(lesson => <LessonCard key={lesson.id} lesson={lesson} user={this.props.user}/>)} */}
+                    </div>
+                       
                     </>
                     :
                         <p>No lessons booked.</p>

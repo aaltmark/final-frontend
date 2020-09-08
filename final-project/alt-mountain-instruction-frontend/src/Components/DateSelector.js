@@ -81,7 +81,8 @@ class DateSelector extends React.Component {
     }
 
     render(){
-        console.log(this.props)
+        console.log(this.state.instructorSchedule)
+        console.log(this.props.instructor)
         return (
             <div>
                 <DatePicker selected={this.state.startDate} onChange={this.handleChange} dateFormat='yyyy/MM/dd' minDate={new Date()} isClearable/>

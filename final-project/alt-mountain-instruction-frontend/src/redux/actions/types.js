@@ -56,6 +56,9 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 
 export const LOGOUT_USER = "LOGOUT_USER"; 
 
+//reviews 
+export const ADD_REVIEW = "ADD_REVIEW"
+
 
 
 

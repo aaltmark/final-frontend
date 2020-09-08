@@ -12,6 +12,7 @@ import userReducer from './userReducer'
 import errorReducer from './errorReducer'
 import scheduleReducer from './scheduleReducer';
 import lessonReducer from './lessonReducer'
+import reviewReducer from './reviewReducer'
 
 
 
@@ -38,7 +39,9 @@ const rootReducer = combineReducers({
     errors: errorReducer,
 
     schedules: scheduleReducer,
-    lessons: lessonReducer
+    lessons: lessonReducer,
+
+    reviews: reviewReducer
 
 
 
