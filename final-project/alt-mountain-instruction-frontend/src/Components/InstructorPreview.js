@@ -44,7 +44,7 @@ class InstructorPreview extends React.Component {
                                 {this.averageRating()} ({instructor.reviews.length})
                             </p>
                             <div class = "buttons">
-                                <NavLink href={`/instructors/${instructor.id}`}>View Profile</NavLink>
+                                <NavLink href={`/instructors/${instructor.id}`} class="profile-link">View Profile</NavLink>
                             </div>
                             <div class="skills">
                                 <h6>Resorts</h6>
