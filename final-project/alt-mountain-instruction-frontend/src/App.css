@@ -576,8 +576,8 @@ div.flex {
 }
 
 .loading {
-  left: 50%;
-  top: 60%;
+  left: 90%;
+  top: 50%;
   
   margin: auto; 
   width: 80%; 
@@ -621,6 +621,64 @@ input[type="checkbox"]{
   color: orange;
 }
 
+.carousel {
+  margin: auto; 
+  padding: 10px;
+  width: 80%;
+}
+
+#home{
+  color: #b48608; 
+  font-family: 'Droid serif', serif; 
+  font-size: 36px; 
+  font-weight: 400; 
+  font-style: italic; 
+  line-height: 44px; 
+  margin: 0 0 12px; 
+  text-align: center; 
+}
+
+.example_b{
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #60a3bc;
+  padding: 20px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+  align-items: center;
+}
+
+.example_b:hover {
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+}
+
+.search-resort{
+  border-style: groove;
+  border: indianred;
+  border: 2px;
+}
+
+.search-header {
+  color: #b48608; 
+  font-family: 'Droid serif', serif; 
+  font-size: 36px; 
+  font-weight: 400; 
+  font-style: italic; 
+  line-height: 44px; 
+  margin: 0 0 12px; 
+  text-align: center; 
+}
+
+.list-group-item{
+  text-align: center;
+  text-shadow: 1px 1px 2px #b48608;
+}
 
 
 

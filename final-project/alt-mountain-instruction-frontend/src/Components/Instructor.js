@@ -122,17 +122,17 @@ class Instructor extends React.Component {
                                     {this.state.filter === "experience" ? 
                                     <>
                                         <div class="profile-posts-tab">
-                                            <h3>Certifications</h3>
+                                            <h3 class="search-header">Certifications</h3>
                                             <ListGroup variant="flush">
                                                 {this.props.instructor.experiences.filter(experience => experience.experience_category === "Certification").map(experience =>
-                                                    <ListGroup.Item>{experience.experience_name} - {experience.experience_year} </ListGroup.Item>
+                                                    <ListGroup.Item>{experience.experience_name} | {experience.experience_year} </ListGroup.Item>
                                                 )}
                                             </ListGroup>
 
-                                            <h3>Work</h3>
+                                            <h3 class="search-header">Work</h3>
                                             <ListGroup variant="flush">
                                                 {this.props.instructor.experiences.filter(experience => experience.experience_category === "Work").map(experience =>
-                                                        <ListGroup.Item>{experience.experience_name} - {experience.experience_year} </ListGroup.Item>
+                                                        <ListGroup.Item>{experience.experience_name} | {experience.experience_year} </ListGroup.Item>
                                                 )}
                                             </ListGroup>
 
@@ -149,7 +149,7 @@ class Instructor extends React.Component {
                                     {this.state.filter === "availability" ?
                                     <>
                                         <div class="profile-review-tab">
-                                            <h1>Availability</h1>
+                                            <h1 class="search-header">Availability</h1>
                                             <p>How many lessons would you like?</p>
                                             <input type="number" name="lesson-quantity" value={this.state.quantity} onChange={this.quantityChanger} />
                                             <div class="calendar-selector">

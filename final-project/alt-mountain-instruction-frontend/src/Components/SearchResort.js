@@ -64,14 +64,21 @@ class SearchResort extends React.Component {
             {this.props.resorts.length > 0 && this.props.instructors.length > 0 ? 
                 <>
                 <div>
-                    <h1>Select a Resort:</h1>
+
+                </div>
+                <div class="search-resort">
+                    <h1 class="search-header">Select Resort</h1>
                     <Select options={options} onChange={this.handleChange} class="resort-search"/>
                     <br/>
                     {/* <button onClick={this.filterInstructors} class="search-btn">Search for Instructors</button> */}
-                    <Link to={`/search/instructors`} class="search-btn" onClick={this.filterInstructors}>Search For Instructors</Link>
+                    {/* <Link to={`/search/instructors`} class="search-btn" onClick={this.filterInstructors}>Search For Instructors</Link> */}
                 </div>
                 <div>
-                    <h1>Ski or Snowboard</h1>
+                </div>
+                <div>
+                </div>
+                <div class="search-resort">
+                    <h1 class="search-header">Ski or Snowboard</h1>
                     <Form>
                         <Form.Group>
                             <Form.Control as="select" custom onChange={this.handleSpecialtyChange}>
@@ -82,11 +89,15 @@ class SearchResort extends React.Component {
                         </Form.Group>
                     </Form>
                 </div>
+                <div></div>
+                <div></div>
+                <div>
+                    <Link to={`/search/instructors`} class="example_b" onClick={this.filterInstructors}>Search For Instructors</Link>
+                </div>
 
                 </>
             :
                 <div class="loading">
-                    <ClipLoader color="aqua" />
                     <img src="https://static.dribbble.com/users/1086141/screenshots/9713060/wolf_mountain-01_4x.png" alt="mountains" />
                 </div>
 
