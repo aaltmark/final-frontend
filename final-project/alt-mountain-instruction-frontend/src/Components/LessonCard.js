@@ -41,7 +41,9 @@ class LessonCard extends React.Component {
     deleteClickHandler = (e) => {
         e.preventDefault()
         this.props.deleteLesson(this.props.lesson.id)
-        this.props.makeScheduleAvailable(this.props.schedule.id, this.props.schedule.instructor_id, this.props.schedule.date, true)
+        // this.props.makeScheduleAvailable(this.props.schedule.id, this.props.schedule.instructor_id, this.props.schedule.date, true)
+        this.props.makeScheduleAvailable(this.props.lesson.schedule.id, this.props.lesson.schedule.instructor_id, this.props.lesson.schedule.date, true)
+
         //id, instructor id, date, schedule
     }
 

@@ -70,7 +70,7 @@ class DateSelector extends React.Component {
         this.props.editSchedule(this.state.instructorSchedule.schedule_id, this.props.instructor.id, this.state.instructorSchedule.schedule_date, false)
 
         //post lesson
-        this.props.addLesson(1, this.props.instructor.id, this.state.instructorSchedule.schedule_id, this.state.instructorSchedule.schedule_date, this.state.resort, this.state.groupSize, this.state.groupAge, this.state.groupSkill )
+        this.props.addLesson(this.props.user.id, this.props.instructor.id, this.state.instructorSchedule.schedule_id, this.state.instructorSchedule.schedule_date, this.state.resort, this.state.groupSize, this.state.groupAge, this.state.groupSkill )
 
         //handle presentation 
         this.setState({
@@ -81,8 +81,6 @@ class DateSelector extends React.Component {
     }
 
     render(){
-        console.log(this.state.instructorSchedule)
-        console.log(this.props.instructor)
         return (
             <div>
                 <DatePicker selected={this.state.startDate} onChange={this.handleChange} dateFormat='yyyy/MM/dd' minDate={new Date()} isClearable/>

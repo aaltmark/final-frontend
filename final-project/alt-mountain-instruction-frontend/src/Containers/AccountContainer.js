@@ -8,12 +8,12 @@ const AccountContainer = (props) => {
     return (
         <>
             {props.user ? props.history.push('/') : 
-                <>
+                <div class="sign-up">
                     <Login />
                     <NavLink to="/signup"><p id="no-account">Don't have an account? Sign up here</p></NavLink>
                     {props.error ? <p class="error">{props.error}</p> : null}
                     
-                </>
+                </div>
             }
         </>
     )

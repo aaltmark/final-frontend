@@ -28,7 +28,6 @@ class InstructorPreview extends React.Component {
 
     render(){
         let instructor = this.props.instructor
-        console.log(this.props.instructor)
         return(
             // <>
             // {this.props.instructor ? 

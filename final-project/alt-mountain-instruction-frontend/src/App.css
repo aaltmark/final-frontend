@@ -624,7 +624,7 @@ input[type="checkbox"]{
 .carousel {
   margin: auto; 
   padding: 10px;
-  width: 80%;
+  width: 70%;
 }
 
 #home{
@@ -678,6 +678,22 @@ input[type="checkbox"]{
 .list-group-item{
   text-align: center;
   text-shadow: 1px 1px 2px #b48608;
+}
+
+.sign-up{
+  position: relative;
+  margin: auto;
+  width: 60%;
+  margin-top: 5%;
+  border-style: outset;
+  padding: 30px;
+  border-radius: 10px;
+  border-color: #b48608;
+  
+}
+
+#no-account {
+
 }
 
 

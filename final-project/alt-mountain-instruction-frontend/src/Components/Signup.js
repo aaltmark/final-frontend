@@ -48,7 +48,7 @@ class Signup extends React.Component {
                                 <Form.Label>Name*</Form.Label>
                                 <Form.Control onChange={this.changeHandler} value={this.state.name} placeholder='Enter your name here...' name='name' type='text' />
                             </Form.Group>
-                            <Button type="submit">Create User</Button> {this.props.error ? <p className="error-message">{this.props.error}</p> : null}
+                            <Button type="submit">Create User</Button> {this.props.error ? <p className="error">{this.props.error}</p> : null}
                         </Form>
                         {/* {this.props.error ? <p class="error">{this.props.error}</p> : null} */}
                     </div>

@@ -26,7 +26,7 @@ class Login extends React.Component {
         console.log(this.props)
         return (
             
-            <div class="sign-up">
+            <div>
                 <h1>Login</h1>
                     <Form onSubmit={this.submitHandler}>
                         <Form.Group>
